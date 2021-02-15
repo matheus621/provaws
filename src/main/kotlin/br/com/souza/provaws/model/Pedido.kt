@@ -16,6 +16,5 @@ data class Pedido(
     val status: String,
     val critica: String,
     val valor: String,
-    @Embedded
-    val cliente: Cliente
+    val cliente: String
 )
