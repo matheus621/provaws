@@ -22,14 +22,14 @@ class ClienteController {
         return clienteRespository.save(cliente)
     }
 
-//    @PutMapping("{id}")
-//    fun alter(@PathVariable id: Long, @RequestBody cliente: Cliente): Cliente {
-//        if (clienteRespository.existsById(id)) {
-//            val safeCliente = cliente.copy(id)
-//            return clienteRespository.save(safeCliente)
-//        }
-//        return Cliente()
-//    }
+    @PutMapping("{id}")
+    fun alter(@PathVariable id: Long, @RequestBody cliente: Cliente): Cliente {
+        if (clienteRespository.existsById(id)) {
+            val safeCliente = cliente.copy(id)
+            return clienteRespository.save(safeCliente)
+        }
+        return cliente
+    }
 
     @DeleteMapping("{id}")
     fun delete(@PathVariable id: Long){

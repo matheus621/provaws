@@ -1,5 +1,6 @@
 package br.com.souza.provaws.controller
 
+import br.com.souza.provaws.model.Cliente
 import br.com.souza.provaws.model.Pedido
 import br.com.souza.provaws.repository.PedidoRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -21,6 +22,15 @@ class PedidoController {
     @PostMapping
     fun add(@RequestBody pedido: Pedido): Pedido {
         return pedidoRepository.save(pedido)
+    }
+
+    @PutMapping("{id}")
+    fun alter(@PathVariable id: Long, @RequestBody pedido: Pedido): Pedido {
+        if (pedidoRepository.existsById(id)) {
+            val safePedido = pedido.copy(id)
+            return pedidoRepository.save(safePedido)
+        }
+        return pedido
     }
 
     @DeleteMapping("{id}")
